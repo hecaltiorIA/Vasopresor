@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 
-st.title("Predicción de uso de vasopresores - Entrenamiento en tiempo real")
+st.title("Predicción de uso de vasopresores")
 
 @st.cache_data
 def cargar_datos():
