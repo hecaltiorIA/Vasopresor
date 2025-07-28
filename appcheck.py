@@ -30,27 +30,6 @@ modelo = joblib.load("modelo.pkl")
 imputador = joblib.load("imputador.pkl")
 escalador = joblib.load("escalador.pkl")
 return modelo, imputador, escalador
-except FileNotFoundError:
-st.warning("⚠️ No se encontraron los archivos del modelo. Usando modelo de demostracion.")
-
-```
-    # Crear modelo dummy para demostración
-    np.random.seed(42)
-    X_dummy = np.random.randn(1000, 31)  # 31 características
-    y_dummy = np.random.choice([0, 1], 1000, p=[0.7, 0.3])
-    
-    # Entrenar modelos dummy
-    modelo = RandomForestClassifier(n_estimators=100, random_state=42)
-    modelo.fit(X_dummy, y_dummy)
-    
-    imputador = SimpleImputer(strategy='median')
-    imputador.fit(X_dummy)
-    
-    escalador = StandardScaler()
-    escalador.fit(X_dummy)
-    
-    return modelo, imputador, escalador
-```
 
 # Cargar modelos
 
