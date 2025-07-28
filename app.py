@@ -11,7 +11,7 @@ import pickle
 # Configuración de la página
 
 st.set_page_config(
-page_title=“Prediccion de vasopresores”,
+page_title="Prediccion de vasopresores",
 layout=“centered”,
 initial_sidebar_state=“collapsed”
 )
