@@ -9,7 +9,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
 from sklearn.utils import resample
 
-st.title("Predicción de uso de vasopresores (entrenamiento en tiempo real)")
+st.title("Predicción de uso de vasopresores")
 
 @st.cache_data
 def cargar_datos():
