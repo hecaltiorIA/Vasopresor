@@ -11,27 +11,27 @@ import pickle
 # Configuración de la página
 
 st.set_page_config(
-page_title=“Prediccion de vasopresores”,
-layout=“centered”,
-initial_sidebar_state=“collapsed”
+page_title="Prediccion de vasopresores",
+layout="centered",
+initial_sidebar_state="collapsed"
 )
 
 # Título y descripción
 
-st.title(“🩺 Prediccion de uso de vasopresores”)
-st.write(“Llena los datos del paciente para estimar el riesgo de requerir vasopresores.”)
+st.title("🩺 Prediccion de uso de vasopresores")
+st.write("Llena los datos del paciente para estimar el riesgo de requerir vasopresores.")
 
 # Función para cargar o crear modelo dummy
 
 @st.cache_resource
 def cargar_modelos():
 try:
-modelo = joblib.load(“modelo.pkl”)
-imputador = joblib.load(“imputador.pkl”)
-escalador = joblib.load(“escalador.pkl”)
+modelo = joblib.load("modelo.pkl")
+imputador = joblib.load("imputador.pkl")
+escalador = joblib.load("escalador.pkl")
 return modelo, imputador, escalador
 except FileNotFoundError:
-st.warning(“⚠️ No se encontraron los archivos del modelo. Usando modelo de demostracion.”)
+st.warning("⚠️ No se encontraron los archivos del modelo. Usando modelo de demostracion.")
 
 ```
     # Crear modelo dummy para demostración
@@ -58,16 +58,16 @@ modelo, imputador, escalador = cargar_modelos()
 
 # Organizar campos en columnas para mejor presentación
 
-st.subheader(“📊 Datos del paciente”)
+st.subheader("📊 Datos del paciente")
 
 col1, col2 = st.columns(2)
 
 with col1:
-st.markdown(”**🩸 Presion arterial sistolica**”)
-SysABP_first = st.number_input(“Primera medicion (mmHg)”, key=“sys_first”, step=0.1, min_value=0.0, max_value=300.0)
-SysABP_last = st.number_input(“Ultima medicion (mmHg)”, key=“sys_last”, step=0.1, min_value=0.0, max_value=300.0)
-SysABP_lowest = st.number_input(“Mas baja (mmHg)”, key=“sys_low”, step=0.1, min_value=0.0, max_value=300.0)
-SysABP_highest = st.number_input(“Mas alta (mmHg)”, key=“sys_high”, step=0.1, min_value=0.0, max_value=300.0)
+st.markdown("**🩸 Presion arterial sistolica**")
+SysABP_first = st.number_input("Primera medicion (mmHg)", key="sys_first", step=0.1, min_value=0.0, max_value=300.0)
+SysABP_last = st.number_input("Ultima medicion (mmHg)", key="sys_last", step=0.1, min_value=0.0, max_value=300.0)
+SysABP_lowest = st.number_input("Mas baja (mmHg)", key="sys_low", step=0.1, min_value=0.0, max_value=300.0)
+SysABP_highest = st.number_input("Mas alta (mmHg)", key="sys_high", step=0.1, min_value=0.0, max_value=300.0)
 
 ```
 st.markdown("**💓 Presion arterial diastolica**")
@@ -89,9 +89,9 @@ FiO2_last = st.number_input("FiO2 ultima (%)", key="fio2_last", step=0.1, min_va
 ```
 
 with col2:
-st.markdown(”**❤️ Frecuencia cardiaca**”)
-HR_first = st.number_input(“Primera medicion (lpm)”, key=“hr_first”, step=0.1, min_value=0.0, max_value=300.0)
-HR_last = st.number_input(“Ultima medicion (lpm)”, key=“hr_last”, step=0.1, min_value=0.0, max_value=300.0)
+st.markdown("**❤️ Frecuencia cardiaca**")
+HR_first = st.number_input("Primera medicion (lpm)", key="hr_first", step=0.1, min_value=0.0, max_value=300.0)
+HR_last = st.number_input("Ultima medicion (lpm)", key="hr_last", step=0.1, min_value=0.0, max_value=300.0)
 
 ```
 st.markdown("**🌡️ Temperatura**")
@@ -122,11 +122,11 @@ Age = st.number_input("Edad (años)", key="age", step=0.1, min_value=0.0, max_va
 
 # Botón de cálculo centrado
 
-st.markdown(”<br>”, unsafe_allow_html=True)
+st.markdown("<br>", unsafe_allow_html=True)
 col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 1])
 
 with col_btn2:
-calcular = st.button(“🔍 Calcular riesgo”, use_container_width=True)
+calcular = st.button("🔍 Calcular riesgo", use_container_width=True)
 
 if calcular:
 # Recopilar todos los valores
@@ -222,8 +222,8 @@ else:
 
 # Información adicional
 
-with st.expander(“ℹ️ Informacion sobre el modelo”):
-st.write(”””
+with st.expander("ℹ️ Informacion sobre el modelo"):
+st.write("""
 **Acerca de esta herramienta:**
 - Este modelo predictivo esta diseñado para asistir en la toma de decisiones clinicas
 - Los resultados deben interpretarse en el contexto clinico completo del paciente
@@ -243,8 +243,8 @@ st.write(”””
 
 # Footer
 
-st.markdown(”—”)
+st.markdown("—")
 st.markdown(
-“<p style='text-align: center; color: gray;'>🏥 Herramienta de apoyo clinico - Siempre consulte con profesionales medicos</p>”,
+"<p style='text-align: center; color: gray;'>🏥 Herramienta de apoyo clinico - Siempre consulte con profesionales medicos</p>",
 unsafe_allow_html=True
 )
